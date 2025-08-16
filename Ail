@@ -1,0 +1,41 @@
+document.getElementById("endDate").value;
+  var visibleRows = getVisibleRows();
+  for (var i = 0; i < visibleRows.length; i++) {
+    var date = visibleRows[i].cells[2].innerText.trim();
+    if (date < startDate || date > endDate) {
+      visibleRows[i].style.display = "none";
+    } else {
+      visibleRows[i].style.display = "";
+    }
+  }
+}
+
+// دالة لعد الغياب في السجلات بعد البحث
+function countAbsences() {
+  var absencesCount = 0;
+  var visibleRows = getVisibleRows();
+  for (var i = 0; i < visibleRows.length; i++) {
+    var status = visibleRows[i].cells[1].innerText.trim();
+    if (status === "غياب") {
+      absencesCount++;
+    }
+  }
+  alert("عدد الغيابات: " + absencesCount);
+}
+
+// دالة للحصول على الصفوف المرئية بعد البحث
+function getVisibleRows() {
+  var table = document.getElementById("attendanceTable");
+  var rows = table.getElementsByTagName("tr");
+  var visibleRows = [];
+  for (var i = 1; i < rows.length; i++) {
+    if (rows[i].style.display !== "none") {
+      visibleRows.push(rows[i]);
+    }
+  }
+  return visibleRows;
+}
+</script>
+
+</body>
+</html>
